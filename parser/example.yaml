@@ -1,6 +1,6 @@
 models:
   - disks:
-      - disk:
+      - ? disk
         device: "/dev/sda" # can also be /dev/disk/by-uuid or a command in the form $(command here)
         size: "499G"
         gpt: true # is the partitiontable gpt or msdos (by default gpt if not set)
@@ -25,11 +25,11 @@ models:
               end: "100%"
               encrypted: True
               logicvolumes:
-                - volume:
+                - ? volume
                   name: "root"
                   size: "200G"
                   mountpoint: "/"
-                - volume:
+                - ? volume
                   name: "home"
                   size: "200G"
                   mountpoint: "/home"
@@ -85,7 +85,7 @@ execution:
   - chroot:
       user: "root" # execute the next steps in the chrooted environment
       steps:
-        - systemsetup:
+        - ? systemsetup
         - createuser: "alpha"
         - bootloader: "/dev/sda" # point to a disk model
   - chroot:
